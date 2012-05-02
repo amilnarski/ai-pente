@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class undoMoveObject{
+public class UndoMoveObject{
 		private LinkedList <int[]> capturedCoord;
 		private double[] valueDiff;
 		private Move move;
