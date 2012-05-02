@@ -8,6 +8,7 @@ The repository includes:
 * Pente Implementation
 * Alpha/Beta Player
 * Q-Learning Player
+* Theoretical GUI Magic
 
 ##Warranty
 Absolutely none.
