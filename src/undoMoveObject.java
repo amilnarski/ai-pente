@@ -47,3 +47,4 @@ public class undoMoveObject{
 			this.valueDiff = valueDifference;
 		}		
 	}
+	
