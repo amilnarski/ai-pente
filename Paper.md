@@ -16,7 +16,7 @@ Existing work has also been done with Pente and Reinforcement Learning. A thesis
 ## Experimental Results
 Remove captures.
 ### The AlphaBeta Player
-The AlphaBeta Player is broken.
+The AlphaBeta Player is not as broken.
 ### The Q Learner Player
 The Q Learner Player is also broken. 
 ### Results
