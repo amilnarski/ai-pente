@@ -1,6 +1,6 @@
 # Pente
 ### Aaron Miller & Gabe Weintraub
-## Description
+## Description of Pente
 
 ## Summary of Existing Work
 
