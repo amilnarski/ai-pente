@@ -17,6 +17,7 @@ public class NewAlphaBetaPlayer extends AlphaBetaPlayer implements GamePlayer {
 	Move bestMove;
 	LinkedList <Move> moveList;
 	int depth = 5;
+	Move bestMove;
 	
 	public NewAlphaBetaPlayer(boolean isMax){
 		super(isMax);
@@ -93,8 +94,13 @@ public class NewAlphaBetaPlayer extends AlphaBetaPlayer implements GamePlayer {
 					g.move(moves.get(i));
 					double v = minValue(g, a, b, depthLimit, ++depth);
 					g.move(new Move("undo"));
-					if (v > a){
+					if (v > a)}
+						
 						a = v;
+						
+						if(depth==0){
+							bestMove = moves.get(i);
+						}
 						System.out.println("Max pushing: "+ moves.get(i));
 						this.moveList.push(moves.get(i)); 
 					}
@@ -125,6 +131,9 @@ public class NewAlphaBetaPlayer extends AlphaBetaPlayer implements GamePlayer {
 					g.move(new Move("undo"));
 					if (v < b){
 						b = v;
+						if(depth==0){
+							bestMove = moves.get(i);
+						}
 						System.out.println("Min pushing: "+ moves.get(i));
 						this.moveList.push(moves.get(i));
 					}
