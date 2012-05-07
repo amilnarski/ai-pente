@@ -51,12 +51,13 @@ The Q Learner could benefit from the reduction in the number of moves like Alpha
 
 ### Results
 
-As neither player is complete enough to test in a significant way, this section will be somewhat anemic. The AlphaBeta player does not play well enough to beat a human player, even when run at depths greater than 3. This is most likely due to a bug in the AlphaBeta code. The Q Learning player does have weights which update successfully, but it will return Null move objects if more than ~20 games are played. This has prevented any serious testing of the Q Learner. Until that point, weights do change based on the result of the game. This suggests that if the Null-move bug could be resolved, we may have a successful Reinforcement Learner. See the end of this paper with output for both the AlphaBeta Player and the Q Learning Player.
+As neither player is complete enough to test in a significant way, this section will be somewhat anemic. The AlphaBeta player does not play well enough to beat a human player, even when run at depths greater than 3. This is most likely due to a bug in the AlphaBeta code. The Q Learning player does have weights which update successfully, but it will return Null move objects if more than ~20 games are played. This has prevented any serious testing of the Q Learner. Until that point, weights do change based on the result of the game. This suggests that if the Null-move bug could be resolved, we may have a successful Reinforcement Learner. See the Appendix for output of both the AlphaBeta Player and the Q Learning Player.
 
 ## Conclusion
 
 Pente remains a very good choice for implementing Artificial Intelligence players. The challenge stems mostly from the difficulty of implementing the game correctly, and the most difficult aspect of game implementation Is undoing state. In retrospect, I would like to rewrite our game implementation before continuing more work on the AI Players. Creating a solid foundation is key to the success of this project; captures and bugs in determining the value of the game were not speeding the development of the AI and complicated debugging. 
 Another way to approach this project successfully would be to develop the players In a simpler game like Tic Tac Toe. Once the players work on that small game, develop the larger game and then apply the players. This strategy would demonstrate that the principles of AI are understood and appropriately de-emphasize the importance of the game implementation.
+While our project was hamstrung by some critical bugs, we have produced two semi-intelligent players which demonstrate an understanding of the principles behind AlphaBeta and Reinforcement Learning. Our Pente implementation demonstrates a solid understanding of features, evaluation functions, and the other hooks required to implement an AI Player.
 
 
 ## References
