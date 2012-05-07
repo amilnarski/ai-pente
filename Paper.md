@@ -22,7 +22,25 @@ Existing work has also been done with Pente and Reinforcement Learning. A thesis
 
 ### Pente
 
-Our Pente implementation played standard Pente rules for the majority of the the project, but in the interest of making further headway on the AI players capturing an opponent's pieces was scrapped. This greatly simplified the game's logic for undoing moves. 
+Our Pente implementation played standard Pente rules for the majority of the the project. In the interest of making further headway on the AI players capturing an opponent's pieces was scrapped. This greatly simplified the game's logic for undoing moves, and eliminated a bug which was returning incorrect feature values.
+Pente is evaluated using 8 features:
+1. Number of Black pieces
+2. Number of White pieces
+3. Number of Black doubles
+4. Number of White doubles
+5. Number of Black triples
+6. Number of White triples
+7. Number of Black quadruples
+8. Number of White quadruples
+These 8 features are multiplied by the following weights to generate the value of the game.
+1.  0.1
+2. -0.1
+3.  0.2
+4. -0.2
+5.  0.3
+6. -0.3
+7.  0.4
+8. -0.4
 
 ### The AlphaBeta Player
 The AlphaBeta players uses the same design as presented in class. As stated above, AlphaBeta has been demonstrated to play reasonably well with a depth limit of 4. Our game has been able 
