@@ -32,21 +32,14 @@ Pente is evaluated using 8 features:
 6. Number of White triples
 7. Number of Black quadruples
 8. Number of White quadruples
-These 8 features are multiplied by the following weights to generate the value of the game.
-1.  0.1
-2. -0.1
-3.  0.2
-4. -0.2
-5.  0.3
-6. -0.3
-7.  0.4
-8. -0.4
+These 8 features are multiplied by the following weight vector to generate the value of the game: {0.1, -0.1, 0.2, -0.2, 0.3, -0.3, 0.4, -0.4}. The Black player plays with the goal of maximizing the value of the game, and the White player tries to minimize the value of the game.
 
 ### The AlphaBeta Player
-The AlphaBeta players uses the same design as presented in class. As stated above, AlphaBeta has been demonstrated to play reasonably well with a depth limit of 4. Our game has been able 
+The AlphaBeta players uses the same design as presented in class. As stated above, AlphaBeta has been demonstrated to play reasonably well with a depth limit of 4. Our game has been able to reach depths of 22, which means that it considers O(361^22) states before selecting a best move. This would appear to be a very high depth and suggests that our Pente implementation is efficient. 
+The AlphaBeta player has a key flaw at this point - and it 
 
 ### The Q Learner Player
-The Q Learner Player is also broken. 
+The Q Learner does not work 100%. 
 
 ### Results
 
