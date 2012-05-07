@@ -93,7 +93,7 @@ public class Pente implements Game {
 		board.board[8][8].setStatus(Space.status.WHITE);
 		turn = player.BLACK; // arbitrarily decided black goes first
 		// this.manager = manager;
-		this.turns = 0;
+		this.turns = 1;
 		moveIsCapture = false;
 		undoData = new LinkedList<undoMoveObject>();
 		gameValue = new double[]{0,1,0,0,0,0,0,0};
@@ -125,7 +125,7 @@ public class Pente implements Game {
 			if (empty) {
 				// make the move
 				board.move(turn, row, col);
-
+				available[row][col] = false;
 				// increment the number of turns
 				turns++;
 
@@ -136,9 +136,12 @@ public class Pente implements Game {
 				// just calculated
 				double[] valDiff = undoData.peek().getValueDifference();
 				int len = valDiff.length;
+				//took out a block comment here
 				for (int i = 0; i < len; i++) {
+					//System.out.print(valDiff[i]+" ");
 					gameValue[i] += valDiff[i];
 				}
+				/*System.out.println();*/
 
 				// move is no longer available
 				available[move.getRow()][move.getCol()] = false;
@@ -153,6 +156,7 @@ public class Pente implements Game {
 					break;
 				}
 			} else {
+				System.out.println("Row: "+move.getRow()+"\tCol: "+move.getCol());
 				throw new MoveException("Move has been taken");
 			}
 		} else {
@@ -194,11 +198,13 @@ public class Pente implements Game {
 		double valueofGame = 0.0;
 		if (!over) {
 			for (int i = 0; i < gameValue.length; i++)
-				valueofGame += gameValue[i] * gameWeights[i];
+				valueofGame += (gameValue[i] * gameWeights[i]);
 		} else {
-			for (int i = 0; i < gameValue.length; i++)
-				valueofGame += gameValue[i] * gameWeights[i];
-			//valueofGame = valueofGame + 100;
+			if (winner==Pente.player.BLACK){
+				valueofGame = 100;
+			} else {
+				valueofGame = -100;
+			}
 		}
 		return valueofGame;
 	}
@@ -219,7 +225,7 @@ public class Pente implements Game {
 				.setStatus(Space.status.EMPTY);
 		available[undo.getMove().getRow()][undo.getMove().getCol()] = true;
 		// add any captured pieces back to the board
-		if (undo.getCapturedCoord() != null) {
+		/*if (undo.getCapturedCoord() != null) {
 			Iterator<int[]> putBack = undo.getCapturedCoord().iterator();
 			int count = 0;
 			while (putBack.hasNext()) {
@@ -241,7 +247,7 @@ public class Pente implements Game {
 			} else {
 				gameValue[3] += (int)count/2;
 			}
-		}
+		}*/
 		// switch the turn and decrement the total number of turns
 		if (turn == player.BLACK) {
 			turn = player.WHITE;
@@ -336,7 +342,7 @@ public class Pente implements Game {
 			moveData.addValueDiff(1, 1);
 		}
 		// handle any captured pieces
-		LinkedList<int[]> remove = moveData.getCapturedCoord();
+		/*LinkedList<int[]> remove = moveData.getCapturedCoord();
 		int count = 0;
 		while (!remove.isEmpty()) {
 			++count;
@@ -353,7 +359,7 @@ public class Pente implements Game {
 			gameValue[2] -= (int)count/2;
 		else
 			gameValue[3] -= (int)count/2;
-
+*/
 		undoData.push(moveData);
 		// System.out.println("Pushing a move at " + turns);
 	}
@@ -377,9 +383,9 @@ public class Pente implements Game {
 		undoMoveObject undo = new undoMoveObject(move);
 		double[] gameValueDiff = new double[] {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 		char[] area = { 'e', 'e', 'e', 'e', 'e' };
-		int[] pos1Coord = null; // the coordinates of the first piece that could
+		//int[] pos1Coord = null; // the coordinates of the first piece that could
 								// be capt.
-		int[] pos2Coord = null; // the coord of the second piece that could be
+		//int[] pos2Coord = null; // the coord of the second piece that could be
 								// capt.
 		// set everything here to nope, then change as we move through the code.
 		for (int distance = 1; distance < 5; distance++) {
@@ -418,17 +424,17 @@ public class Pente implements Game {
 				} else if (board.board[currentRow][currentCol].getStatus() == Space.status.WHITE) {
 					area[distance] = 'w';
 				}
-				if (distance == 1) {
+				/*if (distance == 1) {
 					pos1Coord = new int[] { currentRow, currentCol };
 				} else if (distance == 2) {
 					pos2Coord = new int[] { currentRow, currentCol };
-				}
+				}*/
 			}
 
 		}// end for
 
 		// set up any temp variables we may need
-		moveIsCapture = false;
+		//moveIsCapture = false;
 		char player = '\n';
 		// System.out.println(row+", "+col);
 		// System.out.println(move.undoOrPos);
@@ -521,22 +527,25 @@ public class Pente implements Game {
 		} else {
 			if (area[0] == area[3] && area[1] == area[2] && area[1] != 'e') {
 				// this is a capture
-				moveIsCapture = true;
+				//MAY 05 - MADE DECISION TO ABANDON CAPTURES FROM THE GAME LOGIC
+				//moveIsCapture = true;
 				// System.out.println("Capture!");
-				undo.addCoord(pos1Coord);
-				undo.addCoord(pos2Coord);
+				//undo.addCoord(pos1Coord);
+				//undo.addCoord(pos2Coord);
 			} else {
 				// we either have just this one piece or something crazy is
 				// happening
 
 				// update the single piece in updateGameState() so we don't over
 				// count
-				/*
-				 * if (player == 'b') { gameValueDiff[0]++; } else {
-				 * gameValueDiff[1]++; }
-				 */
+				
+				 // if (player == 'b') { gameValueDiff[0]++; } else {
+				 // gameValueDiff[1]++; }
+				 
 			}
 		}
+		
+		
 		undo.setValueDifference(gameValueDiff);
 
 		return undo;
@@ -588,6 +597,7 @@ public class Pente implements Game {
 						moves.add(new Move(i + 1, j + 1));
 					} catch (Exception e) {
 						e.printStackTrace();
+						System.exit(-333);
 					}
 				}
 			}

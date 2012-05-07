@@ -3,6 +3,7 @@ public class Move {
 	private int col;
 	private boolean isUndoMove;
 	public String undoOrPos;
+	//public double value;
 
 	public Move(int passedRow, int passedCol) throws MoveException {
 		// System.out.println("Move constructor called with " + passedRow + ","
