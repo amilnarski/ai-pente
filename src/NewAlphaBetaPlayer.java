@@ -16,8 +16,7 @@ public class NewAlphaBetaPlayer extends AlphaBetaPlayer implements GamePlayer {
 	int GUID;
 	Move bestMove;
 	LinkedList <Move> moveList;
-	int depth = 5;
-	Move bestMove;
+	int depth = 3;
 	
 	public NewAlphaBetaPlayer(boolean isMax){
 		super(isMax);
@@ -63,8 +62,8 @@ public class NewAlphaBetaPlayer extends AlphaBetaPlayer implements GamePlayer {
 		}else {
 			minValue (g, alpha, beta, depth, 0);
 		}
-		System.out.println("Returning move: "+ moveList.peekFirst());
-		return moveList.pop();
+		System.out.println("Returning move: "+ bestMove);
+		return bestMove;
 	}
 	
 	@Override
@@ -92,19 +91,22 @@ public class NewAlphaBetaPlayer extends AlphaBetaPlayer implements GamePlayer {
 			for (int i = 0; i < moves.size(); i++) {
 				try {
 					g.move(moves.get(i));
-					double v = minValue(g, a, b, depthLimit, ++depth);
+					double v = minValue(g, a, b, depthLimit, depth++);
 					g.move(new Move("undo"));
-					if (v > a)}
-						
+					if (v > a){						
 						a = v;
-						
-						if(depth==0){
+						// System.out.println("Depth @ MAX is : "+depth);
+						if (depth == 0)
+							System.out.println("DEPTH IS 0!");
+						if(depth == 1){
 							bestMove = moves.get(i);
+							System.out.println("Best move is now: "+bestMove);
 						}
-						System.out.println("Max pushing: "+ moves.get(i));
-						this.moveList.push(moves.get(i)); 
+						//System.out.println("Max pushing: "+ moves.get(i));
+						//this.moveList.push(moves.get(i)); 
 					}
 					if (a >= b){
+						
 						return a;
 					}
 				} catch (MoveException e) {
@@ -127,15 +129,20 @@ public class NewAlphaBetaPlayer extends AlphaBetaPlayer implements GamePlayer {
 			for (int i = 0; i < moves.size(); i++) {
 				try {
 					g.move(moves.get(i));
-					double v = maxValue(g, a, b, depthLimit, ++depth);
+					double v = maxValue(g, a, b, depthLimit, depth++);
 					g.move(new Move("undo"));
 					if (v < b){
 						b = v;
-						if(depth==0){
+						// System.out.println("Depth @ MIN is : "+depth);
+						//System.out.println(depth);
+						if (depth == 0)
+							System.out.println("DEPTH IS 0!");
+						if(depth==1){
 							bestMove = moves.get(i);
+							System.out.println("Best move is now: "+bestMove);
 						}
-						System.out.println("Min pushing: "+ moves.get(i));
-						this.moveList.push(moves.get(i));
+						//System.out.println("Min pushing: "+ moves.get(i));
+						//this.moveList.push(moves.get(i));
 					}
 					if (a >= b){
 						return b;

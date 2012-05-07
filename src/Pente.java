@@ -483,9 +483,9 @@ public class Pente implements Game {
 				// nada, since the next move is occupied by our enemy
 				// decrement the number of quads since we lost one here?
 				if (area[0] == 'b') {
-					gameValueDiff[6] -= 1;
+					//gameValueDiff[6] -= 1;
 				} else {
-					gameValueDiff[7] -= 1;
+					//gameValueDiff[7] -= 1;
 				}
 			}
 		} else if (three) {
@@ -502,9 +502,9 @@ public class Pente implements Game {
 				// nada, since the next move is occupied by our enemy
 				// decrement the number of triples since we lost one here?
 				if (area[0] == 'b') {
-					gameValueDiff[4] -= 1;
+					//gameValueDiff[4] -= 1;
 				} else {
-					gameValueDiff[5] -= 1;
+					//gameValueDiff[5] -= 1;
 				}
 			}
 		} else if (two) {
@@ -519,9 +519,9 @@ public class Pente implements Game {
 				// nada, since the next move is occupied by our enemy
 				// decrement the number of doubles since we lost one here?
 				if (area[0] == 'b') {
-					gameValueDiff[2] -= 1; // subtract a double
+					//gameValueDiff[2] -= 1; // subtract a double
 				} else {
-					gameValueDiff[3] -= 1; // subtract a double
+					//gameValueDiff[3] -= 1; // subtract a double
 				}
 			}
 		} else {
