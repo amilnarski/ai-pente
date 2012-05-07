@@ -35,16 +35,22 @@ Pente is evaluated using 8 features:
 These 8 features are multiplied by the following weight vector to generate the value of the game: {0.1, -0.1, 0.2, -0.2, 0.3, -0.3, 0.4, -0.4}. The Black player plays with the goal of maximizing the value of the game, and the White player tries to minimize the value of the game.
 
 ### The AlphaBeta Player
-The AlphaBeta players uses the same design as presented in class. As stated above, AlphaBeta has been demonstrated to play reasonably well with a depth limit of 4. Our game has been able to reach depths of 22, which means that it considers O(361^22) states before selecting a best move. This would appear to be a very high depth and suggests that our Pente implementation is efficient. 
-The AlphaBeta player has a key flaw at this point - and it 
+The AlphaBeta players uses a design similar to that presented in class. As stated above, AlphaBeta has been demonstrated to play reasonably well with a depth limit of 4. Our game has been able to reach depths of 22, which means that it considers O(361^22) states before selecting a best move, but the current implementation of AlphaBeta has slowed down considerably. The moves returned by the new moves returned by AlphaBeta re more correct, so the reduced speed is acceptable.
+The AlphaBeta player currently keeps track of its best move at the shallowest depth. This should return the highest valued move that is one ply away from the current game state. Our AlphaBeta player could be improved significantly by conspiring only those moves that are within five spaces of another piece. With this design change, AlphaBeta still will only consider moves which will change the value of the features. All moves outside of this area have the same value as a move inside it, so they do not need to be considered. This change would significantly reduce the branching factor for AlphaBeta, especially ion the early plus when there is a large number of possible moves in the player’s current design.
 
 ### The Q Learner Player
-The Q Learner does not work 100%. 
+The Reinforcement Player uses Q Learning to update its policy and find its best move. The Q Learner uses the same set of features, but its weights are initialized to 0.5 for its own features, and -0.5 for its opponent's features. This difference should help the Q Learner choose moves that favor it's features and minimize those of its opponent.
+The Q Learner could benefit from the reduction in the number of moves like AlphaBeta, but the benefit is not as pronounced during play. Instead of leading to a quality of moves in-game, it should allow the Q Learner to play it’s games more quickly, reducing the total training time the player would need.
 
 ### Results
 
+As neither player is complete enough to test in a significant way, this section will be somewhat anemic. 
 
 ## Conclusion
+
+Pente remains a very good choice for implementing Artificial Intelligence players. The challenge stems mostly from the difficulty of implementing the game correctly, and the most difficult aspect of game implementation Is undoing state. In retrospect, I would like to rewrite our game implementation before continuing more work on the AI Players. Creating a solid foundation is key to the success of this project; captures and bugs in determining the value of the game were not speeding the development of the AI and complicated debugging. 
+Another way to approach this project successfully would be to develop the players Ina simpler game like Tic Tac Toe. Once the players work on that small game, develop the larger game and then apply the players. This strategy would demonstrate that the principles of AI are understood and appropriately de-emphasize the importance of the game implementation.
+
 
 ## References
 
