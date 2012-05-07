@@ -26,6 +26,9 @@ public class GameManager {
 
 	}
 
+	public void addPlayer (GamePlayer gp){
+		player.add(gp);
+	}
 	public boolean isValidMove(Move move) {
 		boolean validity = false;
 

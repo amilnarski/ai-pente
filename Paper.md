@@ -1,5 +1,6 @@
 # Pente
 ### Aaron Miller & Gabe Weintraub
+
 ## Description of Pente
 
 Pente, named for the Greek word for the number five, is a turn-based strategy board game created by Gary Gabrel in 1977. The game is derived from the Japanese game Ninuki-Renju, which itself is a variant of the games Renju and Gomoku. The games are all played on the same board as Go, a 19x19 grid. Players take turns placing black and white stones on the open intersections of the grid. Pente can be played with up to four players, each using different colored stones, and occasionaly in a two-versus-two team format, but traditionally it is a two player game.
@@ -18,11 +19,35 @@ Pente itself is not a difficult game, and a relatively shallow depth of 4 is rep
 Existing work has also been done with Pente and Reinforcement Learning. A thesis from Universitiet Utrecht found that a learning rate of 0.001 was most effective for a neural network trained to play Pente [3]. This value was adopted for the learning rate of the Q Learning player developed for this project. The thesis states that no research has been performed on Pente and temporal difference learning. General knowledge of reinforcement learning suggests that a self-taught reinforcement learner could become an effective opponent, especially if the learning rate is dampened over time to promote convergence. The successful neural network played well after 10,000 games, with error an order of magnitude less than other trials with different learning rates. We hope that a learning rate of 0.001 will produce good results with fewer runs than a smaller learning rate. 
 
 ## Experimental Results
-Remove captures.
+
+### Pente
+
+Our Pente implementation played standard Pente rules for the majority of the the project. In the interest of making further headway on the AI players capturing an opponent's pieces was scrapped. This greatly simplified the game's logic for undoing moves, and eliminated a bug which was returning incorrect feature values.
+Pente is evaluated using 8 features:
+1. Number of Black pieces
+2. Number of White pieces
+3. Number of Black doubles
+4. Number of White doubles
+5. Number of Black triples
+6. Number of White triples
+7. Number of Black quadruples
+8. Number of White quadruples
+These 8 features are multiplied by the following weights to generate the value of the game.
+1.  0.1
+2. -0.1
+3.  0.2
+4. -0.2
+5.  0.3
+6. -0.3
+7.  0.4
+8. -0.4
+
 ### The AlphaBeta Player
-The AlphaBeta Player is not as broken.
+The AlphaBeta players uses the same design as presented in class. As stated above, AlphaBeta has been demonstrated to play reasonably well with a depth limit of 4. Our game has been able 
+
 ### The Q Learner Player
 The Q Learner Player is also broken. 
+
 ### Results
 
 
