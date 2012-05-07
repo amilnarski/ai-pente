@@ -46,7 +46,7 @@ public class GameManager {
 		Pente pente = new Pente();
 		GameManager mgmt = new GameManager(pente, rpMax);
 		long start = new Date().getTime();
-		for (int games = 0; games < 100; games++) {
+		for (int games = 0; games < 1; games++) {
 
 			// create a new copy of the game for each run
 			pente = new Pente();
